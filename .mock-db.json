@@ -1,0 +1,62 @@
+{
+  "users": [
+    {
+      "id": "user_001",
+      "email": "demo@test.com",
+      "password": "Password123_",
+      "name": "Demo User",
+      "activated": true,
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  "todos": [
+    {
+      "id": "todo_001",
+      "userId": "user_001",
+      "name": "Completare il progetto",
+      "description": "Terminare il progetto mock backend.",
+      "dueDate": "2025-01-15",
+      "status": "active",
+      "deleted": false,
+      "createdAt": "2025-01-01T10:00:00.000Z",
+      "updatedAt": "2025-01-01T10:00:00.000Z"
+    },
+    {
+      "id": "todo_002",
+      "userId": "user_001",
+      "name": "Studiare Socket.IO",
+      "description": "Fare pratica con gli eventi realtime.",
+      "dueDate": "2025-01-20",
+      "status": "completed",
+      "deleted": false,
+      "createdAt": "2025-01-02T10:00:00.000Z",
+      "updatedAt": "2025-01-03T10:00:00.000Z"
+    },
+    {
+      "id": "todo_003",
+      "userId": "user_001",
+      "name": "Todo archiviato",
+      "description": "Todo utilizzato per testare l'archiviazione.",
+      "dueDate": null,
+      "status": "archived",
+      "deleted": false,
+      "createdAt": "2025-01-03T10:00:00.000Z",
+      "updatedAt": "2025-01-04T10:00:00.000Z"
+    },
+    {
+      "id": "todo_004",
+      "userId": "user_001",
+      "name": "Prova delete. Cancellami!!",
+      "description": "Todo utilizzato per testare la cancellazione.",
+      "dueDate": null,
+      "status": "archived",
+      "deleted": false,
+      "createdAt": "2025-01-04T10:00:00.000Z",
+      "updatedAt": "2025-01-04T10:00:00.000Z"
+    }
+  ],
+  "tokens": {},
+  "activationTokens": {},
+  "resetTokens": {},
+  "mailbox": []
+}
