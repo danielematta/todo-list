@@ -12,7 +12,7 @@ import {
   invalidateUserTokens,
   persist,
   validateDueDate,
-} from "./db";
+} from "./db.ts";
 
 import type {
   ClientToServerEvents,
@@ -27,7 +27,7 @@ import type {
   TodoTransitionPayload,
   UpdateTodoPayload,
   User,
-} from "./types";
+} from "./types.ts";
 
 type SocketIOHttpServer =
   ConstructorParameters<

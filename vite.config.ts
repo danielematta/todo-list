@@ -1,8 +1,8 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
-import { handleMockBackend } from "./src/mocks/mockBackend";
-import { attachSocketIO } from "./src/mocks/socketServer";
+import { handleMockBackend } from "./src/mocks/mockBackend.ts";
+import { attachSocketIO } from "./src/mocks/socketServer.ts";
 
 export default defineConfig({
   plugins: [

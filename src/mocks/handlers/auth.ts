@@ -7,7 +7,7 @@ const FAKE_DELAY_MIN = 200;
 const FAKE_DELAY_MAX = 600;
 
 interface ProxyOptions {
-  method?: "GET" | "POST" | "DELETE";
+  method?: "GET" | "POST";
   body?: unknown;
   request?: Request;
 }
@@ -204,29 +204,5 @@ export const authHandlers = [
         },
       );
     },
-  ),
-
-  http.get(
-    "/api/mailbox",
-    async ({ request }) =>
-      proxyRequest(
-        "/__mock/mailbox",
-        {
-          method: "GET",
-          request,
-        },
-      ),
-  ),
-
-  http.delete(
-    "/api/mailbox",
-    async ({ request }) =>
-      proxyRequest(
-        "/__mock/mailbox",
-        {
-          method: "DELETE",
-          request,
-        },
-      ),
   ),
 ];

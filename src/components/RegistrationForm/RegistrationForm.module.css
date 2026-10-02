@@ -1,0 +1,109 @@
+.formContainer {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.authTitle {
+  margin: 0;
+}
+
+.authSubheading {
+  margin-top: 8px;
+  margin-bottom: 40px;
+}
+
+.authNavButton {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: underline;
+  color: var(--text-tertiary);
+}
+
+.authNavButton:hover {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.registrationForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.authInput {
+  width: 500px;
+  height: 60px;
+
+  padding: 8px 16px;
+  padding-right: 48px;
+  margin: 8px 0;
+}
+
+.authInputError {
+  border-color: var(--error);
+}
+
+.authInputError:focus {
+  border-color: var(--error);
+}
+
+.inputPasswordContainer {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.buttonShowPassword {
+  position: absolute;
+  left: 460px;
+  
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: none;
+}
+
+.registrationFormSubmit {
+  width: 500px;
+  height: 60px;
+
+  margin-top: 24px;
+
+  font-size: 1.8rem;
+  font-weight: bold;
+
+  background-color: var(--primary);
+  border: solid 2px var(--border);
+  border-radius: 5px;
+}
+
+.registrationFormSubmit:hover {
+  background-color: var(--primary-hover);
+  cursor: pointer;
+}
+
+.registrationFormInputError {
+  width: 500px;
+  align-self: flex-start;
+  margin-bottom: 16px;
+  color: var(--error);
+}
+
+.registrationFormError {
+    margin-top: 24px;
+    color: var(--error);
+}
+
+.registrationFormSubmitWithError {
+    margin-top: 16px;
+}

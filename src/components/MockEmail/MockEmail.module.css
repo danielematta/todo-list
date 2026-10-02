@@ -1,0 +1,27 @@
+.mailboxContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.subject {
+  margin-top: 16px;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.recipient {
+  margin-bottom: 16px;
+}
+
+.body {
+  line-height: 1.5;
+}
+
+.regards {
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.noEmail {
+  margin: 16px 0;
+}

@@ -7,7 +7,6 @@ import {
   ACTIVATION_TOKEN_TTL,
   RESET_TOKEN_TTL,
   TOKEN_TTL,
-  addMockEmail,
   createExpiry,
   createToken,
   db,
@@ -21,17 +20,18 @@ import {
   persist,
   validateEmail,
   validatePassword,
-} from "./db";
+} from "./db.ts";
 
 import {
   revokeToken,
-} from "./socketServer";
+} from "./socketServer.ts";
 
 import type {
   AuthenticatedRequest,
+  MockEmail,
   PublicUser,
   User,
-} from "./types";
+} from "./types.ts";
 
 type JsonObject =
   Record<string, unknown>;
@@ -306,19 +306,22 @@ async function signup(
     ),
   };
 
-  addMockEmail({
+  const mockEmail: MockEmail = {
     type: "activation",
     to: user.email,
+    recipientName: user.name,
     subject:
       "Activate your account",
     token: activationToken,
-    userId: user.id,
-  });
+  };
+
+  persist();
 
   sendJSON(res, 201, {
     message:
       "Account created. Please activate your account.",
     user: toPublicUser(user),
+    mockEmail,
   });
 }
 
@@ -593,17 +596,20 @@ async function forgotPassword(
     ),
   };
 
-  addMockEmail({
+  const mockEmail: MockEmail = {
     type: "password-reset",
     to: user.email,
+    recipientName: user.name,
     subject:
       "Reset your password",
     token: resetToken,
-    userId: user.id,
-  });
+  };
+
+  persist();
 
   sendJSON(res, 200, {
     message: genericMessage,
+    mockEmail,
   });
 }
 
@@ -716,37 +722,6 @@ async function resetPassword(
   });
 }
 
-async function mailbox(
-  req: IncomingMessage,
-  res: ServerResponse,
-): Promise<void> {
-  if (req.method === "GET") {
-    sendJSON(res, 200, {
-      emails: db.mailbox,
-    });
-
-    return;
-  }
-
-  if (req.method === "DELETE") {
-    db.mailbox = [];
-
-    persist();
-
-    sendJSON(res, 200, {
-      message:
-        "Mailbox cleared.",
-    });
-
-    return;
-  }
-
-  sendJSON(res, 405, {
-    error:
-      "Method not allowed.",
-  });
-}
-
 export async function handleMockBackend(
   req: IncomingMessage,
   res: ServerResponse,
@@ -825,14 +800,6 @@ export async function handleMockBackend(
         res,
       );
 
-      return true;
-    }
-
-    if (
-      url.pathname ===
-      "/__mock/mailbox"
-    ) {
-      await mailbox(req, res);
       return true;
     }
 

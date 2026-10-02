@@ -10,13 +10,11 @@ import {
   TODO_STATUSES,
   type ActivationToken,
   type MockDB,
-  type MockEmail,
-  type NewMockEmail,
   type ResetToken,
   type Session,
   type Todo,
   type User,
-} from "./types";
+} from "./types.ts";
 
 export { TODO_STATUSES };
 
@@ -106,7 +104,6 @@ function createDefaultDB(): MockDB {
     tokens: {},
     activationTokens: {},
     resetTokens: {},
-    mailbox: [],
   };
 }
 
@@ -202,25 +199,6 @@ function isResetToken(
   );
 }
 
-function isMockEmail(
-  value: unknown,
-): value is MockEmail {
-  if (!isRecord(value)) {
-    return false;
-  }
-
-  return (
-    typeof value.id === "string" &&
-    (value.type === "activation" ||
-      value.type === "password-reset") &&
-    typeof value.to === "string" &&
-    typeof value.subject === "string" &&
-    typeof value.token === "string" &&
-    typeof value.userId === "string" &&
-    typeof value.createdAt === "string"
-  );
-}
-
 function normalizeDB(
   input: unknown,
 ): MockDB {
@@ -281,15 +259,6 @@ function normalizeDB(
     );
   }
 
-  if (
-    !Array.isArray(input.mailbox) ||
-    !input.mailbox.every(isMockEmail)
-  ) {
-    throw new Error(
-      "The mock database has invalid mailbox entries.",
-    );
-  }
-
   return {
     users: input.users,
     todos: input.todos,
@@ -308,7 +277,6 @@ function normalizeDB(
         string,
         ResetToken
       >,
-    mailbox: input.mailbox,
   };
 }
 
@@ -403,8 +371,6 @@ export function resetDB(): void {
   db.resetTokens =
     freshDB.resetTokens;
 
-  db.mailbox = freshDB.mailbox;
-
   persist();
 }
 
@@ -454,6 +420,14 @@ export function validatePassword(
 
   if (/\s/.test(password)) {
     return "Password cannot contain spaces.";
+  }
+
+  if (!/[a-z]/.test(password)) {
+    return "Password must contain at least one lowercase letter.";
+  }
+
+  if (!/[A-Z]/.test(password)) {
+    return "Password must contain at least one uppercase letter.";
   }
 
   if (!/\d/.test(password)) {
@@ -663,22 +637,6 @@ export function invalidateUserTokens(
   }
 
   return changed;
-}
-
-export function addMockEmail(
-  email: NewMockEmail,
-): void {
-  db.mailbox.unshift({
-    ...email,
-    id: generateId("mail_"),
-    createdAt:
-      new Date().toISOString(),
-  });
-
-  db.mailbox =
-    db.mailbox.slice(0, 20);
-
-  persist();
 }
 
 export function cleanupExpiredTokens(): void {

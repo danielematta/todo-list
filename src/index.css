@@ -1,19 +1,196 @@
 :root {
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
 
-  font: 18px/145% var(--sans);
+  /* ================= BRAND ================= */
+
+  --primary: rgb(24, 92, 106);
+  --primary-hover: rgb(18, 78, 90);
+  --primary-active: rgb(12, 64, 74);
+
+  --primary-soft: rgb(229, 243, 245);
+  --primary-subtle: rgb(241, 249, 250);
+  --on-primary: rgb(255, 255, 255);
+
+  /* ================= BACKGROUNDS ================= */
+
+  --bg-app: rgb(245, 247, 248); /* pagina */
+
+  --surface: rgb(255, 255, 255); /* card */
+  --surface-secondary: rgb(249, 250, 251); /* header, sidebar */
+  --surface-tertiary: rgb(244, 246, 247); /* blocchi interni */
+
+  --surface-hover: rgb(251, 252, 253);
+  --surface-active: rgb(247, 249, 250);
+  --surface-selected: rgb(242, 248, 249);
+
+  --overlay: rgba(10, 25, 29, 0.48);
+
+  /* ================= INPUT ================= */
+
+  --input-bg: rgb(252, 253, 253);
+  --input-hover: rgb(255, 255, 255);
+  --input-disabled: rgb(241, 243, 244);
+
+  /* ================= BUTTON ================= */
+
+  --button-disabled-bg: rgb(235, 239, 240);
+  --button-disabled-text: rgb(166, 177, 181);
+  --button-disabled-border: rgb(224, 230, 232);
+
+  /* ================= TEXT ================= */
+
+  --text-primary: rgb(22, 30, 34);
+  --text-secondary: rgb(84, 95, 101);
+  --text-tertiary: rgb(116, 126, 132);
+
+  --text-placeholder: rgb(145, 154, 159);
+  --text-disabled: rgb(175, 183, 187);
+  --text-inverse: rgb(255, 255, 255);
+
+  /* ================= BORDERS ================= */
+
+  --border: rgb(225, 229, 232);
+  --border-hover: rgb(197, 206, 210);
+  --border-strong: rgb(176, 188, 194);
+  --divider: rgb(236, 239, 241);
+
+  --focus: var(--primary);
+  --focus-ring: rgba(10, 54, 65, 0.2);
+
+  /* ================= STATUS ================= */
+
+  --success: rgb(24, 134, 91);
+  --success-soft: rgb(229, 246, 238);
+
+  --warning: rgb(184, 118, 20);
+  --warning-soft: rgb(252, 244, 226);
+
+  --error: rgb(198, 55, 55);
+  --error-soft: rgb(253, 237, 237);
+
+  --info: rgb(37, 112, 138);
+  --info-soft: rgb(231, 244, 248);
+
+  /* ================= SHADOWS ================= */
+
+  --shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.04);
+
+  --shadow-sm:
+    0 1px 3px rgba(16, 24, 40, 0.05), 0 1px 2px rgba(16, 24, 40, 0.04);
+
+  --shadow-md:
+    0 4px 12px rgba(16, 24, 40, 0.08), 0 2px 4px rgba(16, 24, 40, 0.04);
+
+  --shadow-lg:
+    0 12px 24px rgba(16, 24, 40, 0.12), 0 6px 8px rgba(16, 24, 40, 0.05);
+
+  font: 16px var(--sans);
+  color: var(--text-primary);
+
   letter-spacing: 0.18px;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--bg-app);
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* ================= BRAND ================= */
+
+    --primary: rgb(34, 108, 122);
+    --primary-hover: rgb(44, 124, 139);
+    --primary-active: rgb(24, 92, 106);
+
+    --primary-soft: rgb(24, 70, 80);
+    --primary-subtle: rgb(18, 54, 62);
+    --on-primary: rgb(255, 255, 255);
+
+    /* ================= BACKGROUNDS ================= */
+
+    --bg-app: rgb(12, 22, 27);
+
+    --surface: rgb(21, 34, 39);
+    --surface-secondary: rgb(17, 29, 34);
+    --surface-tertiary: rgb(25, 40, 46);
+
+    --surface-hover: rgb(28, 44, 50);
+    --surface-active: rgb(32, 48, 54);
+    --surface-selected: rgb(20, 58, 66);
+
+    --overlay: rgba(0, 0, 0, 0.8);
+
+    /* ================= INPUT ================= */
+
+    --input-bg: rgb(17, 30, 34);
+    --input-hover: rgb(20, 35, 40);
+    --input-disabled: rgb(22, 30, 34);
+
+    /* ================= BUTTON ================= */
+
+    --button-disabled-bg: rgb(30, 43, 47);
+    --button-disabled-text: rgb(86, 101, 107);
+    --button-disabled-border: rgb(42, 58, 63);
+
+    /* ================= TEXT ================= */
+
+    --text-primary: rgb(239, 244, 245);
+    --text-secondary: rgb(185, 194, 198);
+    --text-tertiary: rgb(138, 151, 156);
+
+    --text-placeholder: rgb(112, 125, 130);
+    --text-disabled: rgb(86, 101, 107);
+    --text-inverse: rgb(10, 25, 29);
+
+    /* ================= BORDERS ================= */
+
+    --border: rgb(42, 58, 63);
+    --border-hover: rgb(65, 84, 90);
+    --border-strong: rgb(84, 106, 112);
+    --divider: rgb(34, 47, 52);
+
+    --focus: var(--primary);
+    --focus-ring: rgba(78, 180, 197, 0.24);
+
+    /* ================= STATUS ================= */
+
+    --success: rgb(71, 194, 139);
+    --success-soft: rgb(21, 60, 46);
+
+    --warning: rgb(231, 175, 76);
+    --warning-soft: rgb(61, 48, 27);
+
+    --error: rgb(240, 103, 103);
+    --error-soft: rgb(61, 31, 33);
+
+    --info: rgb(87, 174, 202);
+    --info-soft: rgb(23, 53, 62);
+
+    /* ================= SHADOWS ================= */
+
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.18);
+
+    --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.22), 0 1px 2px rgba(0, 0, 0, 0.16);
+
+    --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.18);
+
+    --shadow-lg:
+      0 18px 36px rgba(0, 0, 0, 0.42), 0 8px 12px rgba(0, 0, 0, 0.24);
+  }
+}
+
+/* [data-theme="dark"] {
+} */
 
 html {
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -27,5 +204,50 @@ body {
 
 #root {
   width: 100%;
-  min-height: 100vh;
+}
+
+h1 {
+  margin: 16px 0;
+}
+
+h2 {
+  margin: 16px 0;
+}
+
+input {
+  font: 16px var(--sans);
+  letter-spacing: 0.18px;
+  color: var(--text-primary);
+  background-color: var(--input-bg);
+  border: solid 2px var(--border);
+  border-radius: 5px;
+  outline: none;
+  box-shadow: var(--shadow-xs);
+}
+
+input:focus {
+  border: solid 2px var(--primary);
+}
+
+input::placeholder {
+  color: var(--text-placeholder);
+}
+
+button {
+  font: 16px var(--sans);
+  color: var(--text-inverse);
+  letter-spacing: 0.18px;
+  box-shadow: var(--shadow-xs);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }

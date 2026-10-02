@@ -48,16 +48,12 @@ export interface ResetToken {
 export type MockEmailType = "activation" | "password-reset";
 
 export interface MockEmail {
-    id: string;
     type: MockEmailType;
     to: string;
+    recipientName: string;
     subject: string;
     token: string;
-    userId: string;
-    createdAt: string;
 }
-
-export type NewMockEmail = Omit<MockEmail, "id" | "createdAt">;
 
 export interface MockDB {
     users: User[];
@@ -65,7 +61,6 @@ export interface MockDB {
     tokens: Record<string, Session>;
     activationTokens: Record<string, ActivationToken>;
     resetTokens: Record<string, ResetToken>;
-    mailbox: MockEmail[];
 }
 
 export interface AuthenticatedRequest {

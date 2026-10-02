@@ -1,0 +1,47 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+
+  background: var(--surface);
+  padding: 16px;
+  border: solid 2px var(--border);
+  border-radius: 5px;
+  box-shadow: var(--shadow-lg);
+}
+
+.xButton {
+  width: 30px;
+  height: 30px;
+  align-self: flex-end;
+  
+
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-primary);
+
+  background-color: var(--surface);
+  border: solid 2px var(--border);
+  border-radius: 5px;
+}
+
+.xButton:hover {
+  background-color: var(--surface-hover);
+  border-color: var(--border-hover);
+  cursor: pointer;
+}
+
+.title {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
