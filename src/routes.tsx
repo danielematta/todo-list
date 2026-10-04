@@ -5,9 +5,10 @@ import RegistrationForm from "./components/RegistrationForm/RegistrationForm.tsx
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword.tsx";
 import ResetPassword from "./components/ResetPassword/ResetPassword.tsx";
 import ResetPasswordSuccessPage from "./pages/ResetPasswordSuccessPage/ResetPasswordSuccessPage.tsx";
-import ActivationPage from "./pages/ResetPasswordSuccessPage/ActivationPage/ActivationPage.tsx";
+import ActivationPage from "./pages/ActivationPage/ActivationPage.tsx";
 import HomeLayout from "./layout/HomeLayout/HomeLayout.tsx";
 import ActivityTabs from "./components/Activities/ActivityTabs/ActivityTabs.tsx";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.tsx";
 
 export const routes = [
   {
@@ -47,10 +48,15 @@ export const routes = [
         element: <HomeLayout />,
         children: [
           {
-            path: "activities",
-            element: <ActivityTabs />
-          }
-        ]
+            element: <ProtectedRoute />,
+            children: [
+              {
+                path: "activities",
+                element: <ActivityTabs />,
+              },
+            ],
+          },
+        ],
       },
     ],
   },

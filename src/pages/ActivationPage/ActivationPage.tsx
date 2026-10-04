@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./ActivationPage.module.css";
 import { useSearchParams } from "react-router";
-import { activate } from "../../../services/auth.service";
+import { activate } from "../../services/auth.service";
 import {
   isApiError,
   type ActivateResponseTypes,
-} from "../../../types/auth.types";
-import Loader from "../../../components/Loader/Loader";
+} from "../../types/auth.types";
+import Loader from "../../components/Loader/Loader";
 import { createPortal } from "react-dom";
 
 const ActivationPage = () => {

@@ -1,42 +1,17 @@
-.forgotPasswordFormContainer {
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.authTitle {
-  margin: 0;
-}
-
-.authSubheading {
-  margin-top: 8px;
-  margin-bottom: 40px;
-
-  font-size: 1rem;
-  text-align: center;
-}
-
-.forgotPasswordForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.emailInput {
+.authInput {
   width: 500px;
   height: 60px;
 
   padding: 8px 16px;
+  padding-right: 48px;
   margin: 8px 0;
 }
 
-.emailInputError {
+.authInputError {
   border-color: var(--error);
 }
 
-.emailInputError:focus {
+.authInputError:focus {
   border-color: var(--error);
 }
 
@@ -48,7 +23,7 @@
   margin-top: 24px;
 }
 
-.emailSubmit {
+.changeUsernameSubmit {
   flex: 1;
   height: 60px;
 
@@ -60,9 +35,15 @@
   border-radius: 5px;
 }
 
-.emailSubmit:hover {
+.changeUsernameSubmit:hover {
   background-color: var(--primary-hover);
   cursor: pointer;
+}
+
+.changeUsernameSubmit:disabled {
+    background-color: var(--button-disabled-bg);
+    border-color: var(--button-disabled-border);
+    color: var(--button-disabled-text);
 }
 
 .cancelButton {
@@ -82,12 +63,14 @@
   border-color: var(--border-hover);
 }
 
-.emailInputError {
+.usernameError {
+  width: 500px;
   align-self: flex-start;
+  margin-bottom: 16px;
   color: var(--error);
 }
 
-.forgotPasswordError {
+.changeUsernameFormError {
     margin-top: 24px;
     color: var(--error);
 }

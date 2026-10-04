@@ -9,3 +9,9 @@ export type ModalPropsTypes = {
     subheading?: string;
     children: ReactNode;
 }
+
+export type ProfileDropdownMenuTypes = {
+    name: string | undefined;
+    logout: () => void;
+    updateUsername: () => void;
+}

@@ -7,7 +7,7 @@ const FAKE_DELAY_MIN = 200;
 const FAKE_DELAY_MAX = 600;
 
 interface ProxyOptions {
-  method?: "GET" | "POST";
+  method?: "GET" | "POST" | "PATCH";
   body?: unknown;
   request?: Request;
 }
@@ -172,6 +172,23 @@ export const authHandlers = [
           request,
         },
       ),
+  ),
+
+  http.patch(
+    "/api/auth/profile",
+    async ({ request }) => {
+      const body: unknown =
+        await request.json();
+
+      return proxyRequest(
+        "/__mock/auth/profile",
+        {
+          method: "PATCH",
+          body,
+          request,
+        },
+      );
+    },
   ),
 
   http.post(

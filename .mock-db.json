@@ -79,7 +79,12 @@
       "updatedAt": "2025-01-04T10:00:00.000Z"
     }
   ],
-  "tokens": {},
+  "tokens": {
+    "mock_token_50e569007be4432382d7b15db95b182e0de811301e8c4c53a2746a3cfbcd8183": {
+      "userId": "user_001",
+      "expiresAt": 1791115986030
+    }
+  },
   "activationTokens": {},
   "resetTokens": {}
 }

@@ -1,0 +1,51 @@
+.trigger {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: underline;
+  color: var(--primary);
+}
+
+.trigger:hover {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.trigger:focus {
+  outline: none;
+}
+
+.trigger[data-state="open"] {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 2000;
+  padding: 8px;
+
+  font: 16px var(--sans);
+  letter-spacing: 0.18px;
+  color: var(--text-primary);
+
+  background-color: var(--surface);
+  border: solid 1px var(--border);
+  border-radius: 5px;
+  box-shadow: var(--shadow-sm);
+}
+
+.item:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.item:focus {
+  outline: none;
+}

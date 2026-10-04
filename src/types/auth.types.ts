@@ -81,6 +81,18 @@ export type ActivateResponseTypes = {
   message: string;
 };
 
+export type LogoutResponseTypes = {
+  message: string;
+};
+
+export type MeResponseTypes = {
+  user: AuthUserTypes;
+};
+
+export type UpdateUsernameTypes = {
+  user: AuthUserTypes;
+}
+
 //TYPE GUARDS
 
 export const isApiError = (error: unknown): error is ApiErrorTypes => {

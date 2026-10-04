@@ -8,6 +8,9 @@ import {
   type RegistrationFormValuesTypes,
   type RegistrationResponseTypes,
   type ActivateResponseTypes,
+  type LogoutResponseTypes,
+  type MeResponseTypes,
+  type UpdateUsernameTypes,
 } from "../types/auth.types.ts";
 
 export const login = async (
@@ -104,7 +107,7 @@ export const activate = async (
   const res = await fetch("/api/auth/activate", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({token}),
+    body: JSON.stringify({ token }),
   });
 
   const data = await res.json();
@@ -118,4 +121,71 @@ export const activate = async (
   }
 
   return data as ActivateResponseTypes;
+};
+
+export const logout = async (token: string): Promise<LogoutResponseTypes> => {
+  const res = await fetch("/api/auth/logout", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    const error: ApiErrorTypes = {
+      message: data.error,
+      status: res.status,
+    };
+    throw error;
+  }
+
+  return data as LogoutResponseTypes;
+};
+
+export const me = async (token: string): Promise<MeResponseTypes> => {
+  const res = await fetch("/api/auth/me", {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    const error: ApiErrorTypes = {
+      message: data.error,
+      status: res.status,
+    };
+    throw error;
+  }
+
+  return data as MeResponseTypes;
+};
+
+export const updateUsername = async ({
+  name,
+  token,
+}: {
+  name: string;
+  token: string;
+}): Promise<UpdateUsernameTypes> => {
+  const res = await fetch("/api/auth/profile", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name }),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    const error: ApiErrorTypes = {
+      message: data.error,
+      status: res.status,
+    };
+    throw error;
+  }
+
+  return data as UpdateUsernameTypes;
 };

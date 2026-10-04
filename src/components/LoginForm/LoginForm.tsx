@@ -14,6 +14,9 @@ import { isApiError } from "../../types/auth.types.ts";
 import Loader from "../Loader/Loader.tsx";
 import { Eye, EyeOff } from "lucide-react";
 import { createPortal } from "react-dom";
+import { useReduxDispatch } from "../../store/useRedux.ts";
+import { setToken } from "../../reducers/tokenSlice.ts";
+import { setIsAuthorized, setUser } from "../../reducers/userSlice.ts";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -28,6 +31,7 @@ const LoginForm = () => {
   const [loginError, setLoginError] = useState<string | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useReduxDispatch();
 
   const handleLoginFormValuesChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -74,7 +78,10 @@ const LoginForm = () => {
         email: loginFormValues.email,
         password: loginFormValues.password,
       });
-      console.log("USER: ", loginResponse);
+      dispatch(setToken(loginResponse.token));
+      dispatch(setUser(loginResponse.user));
+      dispatch(setIsAuthorized(true));
+      navigate("/activities");
     } catch (error) {
       if (isApiError(error)) {
         setLoginError(error.message);

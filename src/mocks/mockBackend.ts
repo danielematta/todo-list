@@ -534,6 +534,46 @@ async function me(
   });
 }
 
+async function updateProfile(
+  req: IncomingMessage,
+  res: ServerResponse,
+): Promise<void> {
+  const auth =
+    authenticateRequest(req);
+
+  if (!auth) {
+    sendJSON(res, 401, {
+      error: "Unauthorized.",
+    });
+
+    return;
+  }
+
+  const body =
+    await readRequestBody(req);
+
+  const name =
+    normalizeName(body.name);
+
+  if (!name) {
+    sendJSON(res, 400, {
+      error: "Name is required.",
+    });
+
+    return;
+  }
+
+  auth.user.name = name;
+
+  persist();
+
+  sendJSON(res, 200, {
+    user: toPublicUser(
+      auth.user,
+    ),
+  });
+}
+
 async function forgotPassword(
   req: IncomingMessage,
   res: ServerResponse,
@@ -774,6 +814,19 @@ export async function handleMockBackend(
       req.method === "GET"
     ) {
       await me(req, res);
+      return true;
+    }
+
+    if (
+      url.pathname ===
+        "/__mock/auth/profile" &&
+      req.method === "PATCH"
+    ) {
+      await updateProfile(
+        req,
+        res,
+      );
+
       return true;
     }
 
